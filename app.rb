@@ -23,9 +23,10 @@ end
 get("/square_root/results") do
   @the_num_r = params.fetch("users_root_number").to_f
 
-  @the_result_r = @the_num_r.to_f ** (1/2)
+  @the_result_r = @the_num_r**0.5
   erb(:square_root_results)
 end
+
 
 get("/") do
   "
