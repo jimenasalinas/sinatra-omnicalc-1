@@ -52,6 +52,8 @@ get("/payment/results") do
   @principal_formatted = format("$%.2f", @principal)
   @payment_formatted = format("$%.2f", @payment)
 
+  @principal_formatted = @principal_formatted.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+  @payment_formatted = @payment_formatted.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
   erb(:payment_results)
 end
 
