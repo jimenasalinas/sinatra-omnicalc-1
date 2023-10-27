@@ -41,7 +41,12 @@ get("/payment/results") do
   monthly_interest_rate = (@apr / 12) / 100
   total_payments = @years * 12
 
-  @payment = (monthly_interest_rate * @principal) / (1 - (1 + monthly_interest_rate)**(-total_payments)).to_s_currency
+  @payment = (monthly_interest_rate * @principal) / (1 - (1 + monthly_interest_rate)**(-total_payments))
+  
+  @apr_formatted = sprintf('%.4f%%', @apr)
+  @years_formatted = @years
+  @principal_formatted = format("$%.2f", @principal)
+  @payment_formatted = format("$%.2f", @payment)
 
   erb(:payment_results)
 end
