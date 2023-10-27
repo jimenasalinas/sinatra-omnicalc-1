@@ -17,6 +17,10 @@ get("/payment/new") do
   erb(:new_payment)
 end
 
+get("/random/new") do
+  erb(:new_random)
+end
+
 get("/square/results") do
   @the_num = params.fetch("users_number").to_f
 
@@ -42,7 +46,7 @@ get("/payment/results") do
   total_payments = @years * 12
 
   @payment = (monthly_interest_rate * @principal) / (1 - (1 + monthly_interest_rate)**(-total_payments))
-  
+
   @apr_formatted = sprintf('%.4f%%', @apr)
   @years_formatted = @years
   @principal_formatted = format("$%.2f", @principal)
@@ -51,6 +55,15 @@ get("/payment/results") do
   erb(:payment_results)
 end
 
+get("/random/results") do
+  @min = params.fetch("users_min").to_f
+
+  @max = params.fetch("users_max").to_f
+
+  @random_number = @min + rand * (@max - @min)
+  erb(:random_results)
+
+end
 
 get("/") do
   erb(:new_square_calc)
